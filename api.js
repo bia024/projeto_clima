@@ -1,3 +1,4 @@
+if (typeof document !== 'undefined') {
 document.addEventListener('DOMContentLoaded', () => {
     const searchCard = document.getElementById('search-card');
     const resultCard = document.getElementById('result-card');
@@ -58,30 +59,10 @@ document.addEventListener('DOMContentLoaded', () => {
         searchBtn.disabled = true;
 
         try {
-            const geoRes = await fetch(`https://geocoding-api.open-meteo.com/v1/search?name=${encodeURIComponent(city)}&count=1&language=pt&format=json`);
-            
-            if (!geoRes.ok) throw new Error('Falha de rede: Erro na comunicação com o servidor (Geocoding).');
-            
-            const geoData = await geoRes.json();
-            
-            if (!geoData.results || geoData.results.length === 0) {
-                throw new Error(`A cidade "${city}" não foi encontrada. Tente usar outro nome ou remover acentos.`);
-            }
-
-            const { latitude, longitude, name, admin1, country } = geoData.results[0];
-
-            const weatherRes = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&current_weather=true`);
-            
-            if (!weatherRes.ok) throw new Error('Falha de rede: Não foi possível obter os dados climáticos detalhados.');
-
-            const weatherData = await weatherRes.json();
-            const current = weatherData.current_weather;
-
-            updateInterface(current, name, admin1, country);
-
+            const weatherObj = await fetchWeather(city);
+            updateInterface(weatherObj, weatherObj.name, weatherObj.admin1, weatherObj.country);
             hideElement(searchCard);
             showElement(resultCard);
-
         } catch (error) {
             showError(error.message);
         } finally {
@@ -106,7 +87,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const mappedData = weatherMapping[current.weathercode] || { desc: "Desconhecido", dayIcon: "wi-na", nightIcon: "wi-na" };
         resultDesc.textContent = mappedData.desc;
         
-        weatherIcon.className = "wi";
+        weatherIcon.className = "wi"; 
         
         if (current.is_day === 1) {
             weatherIcon.classList.add(mappedData.dayIcon);
@@ -129,7 +110,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function hideElement(el) { el.classList.add('hidden'); }
-
     function showElement(el) { el.classList.remove('hidden'); }
 
     function showError(msg) {
@@ -137,3 +117,39 @@ document.addEventListener('DOMContentLoaded', () => {
         showElement(errorEl);
     }
 });
+}
+
+async function fetchWeather(city) {
+    if (!city || city.trim() === '') {
+        throw new Error("A entrada de cidade não pode estar vazia.");
+    }
+
+    const geoRes = await fetch(`https://geocoding-api.open-meteo.com/v1/search?name=${encodeURIComponent(city)}&count=1&language=pt&format=json`);
+    
+    if (!geoRes.ok) throw new Error('Falha de rede: Erro na comunicação com o servidor (Geocoding).');
+    
+    const geoData = await geoRes.json();
+    
+    if (!geoData.results || geoData.results.length === 0) {
+        throw new Error(`A cidade "${city}" não foi encontrada. Tente usar outro nome ou remover acentos.`);
+    }
+
+    const { latitude, longitude, name, admin1, country } = geoData.results[0];
+
+    const weatherRes = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&current_weather=true`);
+    
+    if (!weatherRes.ok) throw new Error('Falha de rede: Não foi possível obter os dados climáticos detalhados.');
+
+    const weatherData = await weatherRes.json();
+    
+    return {
+        ...weatherData.current_weather,
+        name,
+        admin1,
+        country
+    };
+}
+
+if (typeof module !== 'undefined' && module.exports) {
+    module.exports = { fetchWeather };
+}

@@ -1,0 +1,23 @@
+{
+  "name": "projeto_clima",
+  "version": "1.0.0",
+  "description": "Este projeto consiste em uma aplicação web de previsão do tempo desenvolvida em JavaScript puro (Vanilla JS), HTML5 e CSS3. Criada com o objetivo de demonstrar a construção de interfaces responsivas de alta qualidade visual e o consumo eficiente de APIs externas.",
+  "main": "api.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bia024/projeto_clima.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/bia024/projeto_clima/issues"
+  },
+  "homepage": "https://github.com/bia024/projeto_clima#readme",
+  "devDependencies": {
+    "jest": "^30.3.0"
+  }
+}
