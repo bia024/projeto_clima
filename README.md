@@ -1,33 +1,29 @@
-# Projeto Clima: Dashboard Metereológico Avançado 
+# Estação Climática em Tempo Real
 
-Uma aplicação web robusta desenvolvida em **JavaScript Vanilla**, orientada a uma arquitetura escalável **(TRACI)** e preparada para o compliance global de mercado. Construída para consulta gráfica e rápida de dados da atmosfera em Tempo Real (Temperatura, Umidade, Vento e Precipitação). Todo o ecossistema é atestado por frameworks de automação de controle do Jest e rigidamente auditado sobre preceitos RGE de Segurança Corporativa.
+Uma aplicação web orientada a serviços meteorológicos globais. O projeto permite a consulta instantânea de dados da atmosfera (como temperatura global, umidade relativa do ar, velocidade dos ventos e faixas de precipitação), integrando também um mapa de radar dinâmico via satélite livre para o acompanhamento ao vivo de frentes frias.
 
-## 🚀 Tecnologias Integradas
-* **HTML5:** Marcação estrutural blindada contra SQLi e injetada nativamente com políticas em rodapé de LGPD/GDPR no Front.
-* **CSS3 Nativo:** Layout minimalista flutuante acompanhando status automático de fuso-horários globais (*Glassmorphism Night / Light*).
-* **JavaScript ES6+:** Requisições `fetch` assíncronas assinaladas e documentadas formalmente (`JSDoc`), formatando Strings e manipulando fluxos de URL.
-* **Jest (Test Runner Node):** Automações rígidas de Unidade (*Unit Tests*), testando todos os módulos do Core (`fetchWeather()`) contra Erros Limites `500` da infraestrutura Open-Meteo, Parses malformados e conexões rurais lentas.
+## 🚀 Tecnologias e Infraestrutura
+* **HTML5 e CSS3:** Interface totalmente responsiva construída com medidas matemáticas relativas (`rem`, `vw`), garantindo leitura e estabilidade nativa desde mostradores de *Smartwatches* até monitores *Ultrawide*.
+* **UX/UI Design:** Estilização baseada em paletas de alto contraste com temas adaptativos autônomos (Day/Night Mode fluidos ligados ao horário global do sol da região aferida), mimetizando a legibilidade focada em painéis de *Broadcasting Profissional*.
+* **JavaScript ES6+:** Roteamento de dados operando a moderna Fetch API sob encapsulamentos assíncronos.
+* **Jest:** Suíte de testes unitários Node.js cobrindo e documentando resiliência vital contra indisponibilidade de serviços HTTP de terceiros e *payloads* corrompidos na entrega.
 
-## 🛡️ Topologia Embutida de Segurança & Direitos (Compliance V2)
-O projeto respeita absolutamente todas as regras globais e a documentação aprofundada pode ser lida em texto plano hospedada junto a raiz do repositório final:
-1. **Atribuição:** Reconhecidamente creditada (via diretrizes flexíveis `SIL OFL 1.1`) a *Erik Flowers* pela biblioteca visual SVG W-Icons, e aos pesquisadores base do *Open-Meteo* pelos fluxos sem chaves. Encontre a listagem descritiva e justificada completa no documento atrelado [`NOTICE.md`](NOTICE.md).
-2. **Auditoria Anti-Ataques e LGPD:** Tratamento contra Interceptações (*XSS*) utilizando o construtor isolante `encodeURIComponent` no lado local. Detalhes minuciosos de tráfego, mitigação (`CORS`) e proteção estanque `HTTPS` encontram-se no documento analítico [`SECURITY.md`](SECURITY.md).
-3. **Open-Source Oficial:** Protegido corporativamente em português e inglês através da prestigiada [`LICENSE.md`](LICENSE.md).
+## 🛡️ Auditoria e Transparência de Dados (Compliance)
+- **Privacidade By-Design:** Zero armazenamento de tráfego, logs de localização ou injeção de *Local Storage*. As intenções de pesquisa operam de forma 100% volátil e decodificada unicamente na camada cliente.
+- **Segurança Nativa:** Proteção direta contra intenções de *Cross-Site Scripting (XSS)* nos blocos de formulário empregando sanitizações limpas da string (`encodeURIComponent`). Todas as pontes de API impõem criptografia restrita de via única *TLS/HTTPS*.
+- **Atribuições Autorais:** Cumprimento do licenciamento [SIL OFL 1.1](NOTICE.md) referente à tipografia do *Weather Icons* SVG e ao termo permissivo de gratuidade não-comercial de autoria pertencentes às fundações fornecedoras do *Open-Meteo* e *Windy*.
 
-## ⚙️ Principais Funcionalidades da UI de Estúdio (TV Broadcast) e Radar
-- **Radar de Satélite Dinâmico (Windy.com):** Encorpamos uma moldura de visão real do planeta atrelada à Latitude e Longitude da busca da sua cidade! Um verdadeiro radar de chuvas animado e arrastável fica na ponta dos seus dedos sem requerer chaves de API Pagas.
-- **Câmera Dashboard Expandida:** Além de indicarmos a Temperatura global, o aplicativo renderiza 3 sub-painéis precisos de tempo, entregando: Fração Térmica do Ar (Umidade %), Volumes de Garoa (mm) e Kilometragem dos Ventos (Km/h). Tudo numa UI baseada em cores de Telejornal de ponta (Painel de LED noturno Profundo neon e Azul-Céu diurno impactante).
-- **Tratamento Fino Visual (TRACI Error):** O App não lança caixas brutas de `alerts()`, isolando o bloco de resposta visual central do CSS diretamente em textos controláveis legíveis de `"Localização não Encontrada"`.
-- **Dicionário Embutido OMC:** Dicionário mapeando lógicas numéricas dos resumos (`Weather Codes`) traduzido automaticamente as classes do Browser baseadas na umidade lida e luz solar do país testado.
-- **Buscas sem Rastreamento Sensível:** Todo o input submetido na navegação é descartado nativamente da Sessão RAM (`volatile status`) sem registros ocultos em bancos de Cache de máquina (`Local Storage`) em obediência primária da Lei de Acessibilidade Cívil e Respeito Ético a Usuários em Front-end.
+## ⚙️ Arquitetura Analítica
+- **Radar Planar:** Um *iframe* visual embarcado e invisível aos travamentos de rede que recentraliza dinamicamente o mapa terrestre para a exata malha de Latitude e Longitude retornadas no primeiro `endpoint` de geocodificação da busca.
+- **Métricas Criptografadas:** Tradução polida de mais de 30 condições meteorológicas brutas (WMO Interpretation Codes) processadas diretamente em Dicionários/Arrays da engine local (Acelerando o tempo de Payload dos servidores sem requerer tradução em nuvem).
 
-### 💻 Como Testar Localmente As Regressões de Estabilidade (TDD)
-O desenvolvedor interessado na malha analítica construída nos emuladores pode compilar todo o teste estrutural instanciando a biblioteca raiz (se o seu ambiente de rotinas Node estiver devidamente atualizado):
+### 💻 Instância e Testes Locais de Funcionalidade
+Garanta estar rodando dentro de um repositório clonado no Terminal local com um framework Node ativo e realize os envios para visualizar o aval construtivo do Jest:
 ```bash
 npm install
-npm run test
+npm test
 ```
 
-## 🎓 Autoria
-Desenvolvido inteiramente por **Bianca Caetano** — Formação em Engenharia de Software.
-[Acompanhe o percurso completo no meu LinkedIn](https://www.linkedin.com/in/bia-caetano).
+## 🎓 Engenharia e Autoria
+Software documentado e construído por **Bianca Caetano** — Engenharia de Software.
+[Acompanhe maiores descrições sistêmicas e os meus outros repositórios via LinkedIn](https://www.linkedin.com/in/bia-caetano).
