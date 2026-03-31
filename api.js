@@ -1,16 +1,18 @@
+/**
+ * @fileoverview Integração principal de consumo das APIs Geocoding e Forecast da Open-Meteo.
+ * Fornece métodos para captação robusta de dados climáticos e conversão visual sem dependências pesadas.
+ */
+
 if (typeof document !== 'undefined') {
 document.addEventListener('DOMContentLoaded', () => {
     const searchCard = document.getElementById('search-card');
     const resultCard = document.getElementById('result-card');
-    
     const form = document.getElementById('weather-form');
     const cityInput = document.getElementById('city-input');
     const searchBtn = document.getElementById('search-btn');
     const homeBtn = document.getElementById('home-btn');
-    
     const loadingEl = document.getElementById('loading');
     const errorEl = document.getElementById('error-message');
-    
     const resultCity = document.getElementById('result-city');
     const resultTemp = document.getElementById('result-temp');
     const resultDesc = document.getElementById('result-desc');
@@ -78,6 +80,14 @@ document.addEventListener('DOMContentLoaded', () => {
         cityInput.focus();
     });
     
+    /**
+     * @function updateInterface
+     * @description Injeta atributos baseando-se no corpo da resposta limpa da API. Modifica o Document Object Model e suas classes Night Themes.
+     * @param {Object} current - Bloco retornado contendo os floats da propriedade temperature, id de código is_day absoluto e numeração de tempo weathercode.
+     * @param {string} name - Base do nome regional da cidade requisitada no Input.
+     * @param {string} admin1 - Região/Estado/Federação (quando contido na Geocoding via Open-Meteo).
+     * @param {string} country - País do respectivo endpoint (Ex: Brasil).
+     */
     function updateInterface(current, name, admin1, country) {
         const locationStr = admin1 ? `${name}, ${admin1}` : `${name}, ${country}`;
         resultCity.textContent = locationStr;
@@ -100,6 +110,11 @@ document.addEventListener('DOMContentLoaded', () => {
         resultDate.textContent = formatCurrentDate();
     }
 
+    /**
+     * @function formatCurrentDate
+     * @description Formata a rotina do new Date num display String polido por extensos utilizando o Intl.DateTimeFormat (PT-BR).
+     * @returns {string} String do tempo atual nativo da janela. Exemplo: "sexta-feira, 25 de outubro de 2029"
+     */
     function formatCurrentDate() {
         return new Intl.DateTimeFormat('pt-BR', {
             weekday: 'long',
@@ -119,6 +134,19 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 }
 
+/**
+ * @async
+ * @function fetchWeather
+ * @description Realiza requisições HTTP seguidas em cascata. Converte parâmetros numéricos (Latitude/Longitude da Geocoding API) para buscar simultaneamente um resultado confiável da Forecast Open-Meteo.
+ * @param {string} city - Identificador de lugar inserido na barra de input do form submetido.
+ * @returns {Promise<Object>} Promessa resolvida com mapeamento das mesclagens absolutas { current_weather, nome_da_cidade, admin_estado, nome_pais }.
+ * @throws {Error} Retorna e isola falhas assíncronas em casos críticos estrtuturais: Vazio da caixa (vazias, Null), não alcance da cidade via Results Index, e HTTP-Drops de servidor.
+ * 
+ * @example
+ * // Chama a arquitetura global da cidade de Tóquio
+ * const metereologia = await fetchWeather('Tóquio');
+ * console.log(`O tempo em ${metereologia.name} é de: ${metereologia.temperature}°C`);
+ */
 async function fetchWeather(city) {
     if (!city || city.trim() === '') {
         throw new Error("A entrada de cidade não pode estar vazia.");
@@ -150,6 +178,7 @@ async function fetchWeather(city) {
     };
 }
 
+// Configuração modular segura do ambiente Jest. Restringe a variável 'module' ao NodeJS.
 if (typeof module !== 'undefined' && module.exports) {
     module.exports = { fetchWeather };
 }
