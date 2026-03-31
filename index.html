@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Previsão do Tempo</title>
+    <meta name="description" content="Aplicativo profissional de previsão do tempo.">
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <main class="container">
+        <div class="weather-card">
+            <h1>Previsão do Tempo</h1>
+            <form id="weather-form" aria-label="Busca de cidade">
+                <div class="input-group">
+                    <input type="text" id="city-input" placeholder="Digite o nome da cidade" required aria-label="Nome da cidade">
+                    <button type="submit" id="search-btn">Buscar</button>
+                </div>
+            </form>
+            
+            <div id="loading" class="hidden">
+                <div class="spinner"></div>
+                <p>Buscando...</p>
+            </div>
+
+            <div id="error-message" class="hidden error"></div>
+
+            <div id="weather-result" class="hidden result">
+                <h2 id="result-city"></h2>
+                <div class="temperature">
+                    <span id="result-temp"></span><span class="unit">°C</span>
+                </div>
+                <div class="weather-details">
+                    <div class="detail-item">
+                        <span class="detail-label">Vento:</span>
+                        <span id="result-wind" class="detail-value"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <script src="api.js"></script>
+</body>
+</html>
