@@ -10,7 +10,7 @@ describe('Suíte de Testes API Open-Meteo (fetchWeather)', () => {
         jest.clearAllMocks();
     });
 
-    test('1. Nome de cidade válido retorna dados meteorológicos e localidade estruturada', async () => {
+    test('1. Nome de cidade válido retorna dados meteorológicos, vento e umidade (Opção 4)', async () => {
         global.fetch.mockResolvedValueOnce({
             ok: true,
             json: async () => ({
@@ -21,7 +21,8 @@ describe('Suíte de Testes API Open-Meteo (fetchWeather)', () => {
         global.fetch.mockResolvedValueOnce({
             ok: true,
             json: async () => ({
-                current_weather: { temperature: 25.4, is_day: 1, weathercode: 0 }
+                current_weather: { temperature: 25.4, is_day: 1, weathercode: 0, windspeed: 18.2 },
+                current: { relative_humidity_2m: 65, precipitation: 0.5 }
             })
         });
 
@@ -30,7 +31,9 @@ describe('Suíte de Testes API Open-Meteo (fetchWeather)', () => {
         expect(global.fetch).toHaveBeenCalledTimes(2);
         expect(data.name).toBe('São Paulo');
         expect(data.temperature).toBe(25.4);
-        expect(data.weathercode).toBe(0);
+        expect(data.windspeed).toBe(18.2);
+        expect(data.humidity).toBe(65);
+        expect(data.precipitation).toBe(0.5);
     });
 
     test('2. Nome de cidade inexistente lança exceção validada e tratada', async () => {
@@ -39,7 +42,7 @@ describe('Suíte de Testes API Open-Meteo (fetchWeather)', () => {
             json: async () => ({ results: [] })
         });
 
-        await expect(fetchWeather('Hogwarts')).rejects.toThrow('A cidade "Hogwarts" não foi encontrada.');
+        await expect(fetchWeather('Hogwarts')).rejects.toThrow('Localidade não encontrada|Não conseguimos encontrar a busca requerida. Tente novamente.');
         expect(global.fetch).toHaveBeenCalledTimes(1); 
     });
 
