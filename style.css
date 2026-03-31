@@ -289,3 +289,43 @@ body.night .metric p {
         align-items: flex-start;
     }
 }
+
+.app-footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    padding: 10px 14px;
+    font-size: 0.65rem;
+    color: #4A5568;
+    background: rgba(255, 255, 255, 0.4);
+    backdrop-filter: blur(6px);
+    transition: all 0.5s ease;
+    border-top: 1px solid rgba(255, 255, 255, 0.5);
+    z-index: 100;
+}
+
+body.night .app-footer {
+    color: #94A3B8;
+    background: rgba(23, 25, 44, 0.8);
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.app-footer a {
+    color: #3182CE;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+body.night .app-footer a {
+    color: #90CDF4;
+}
+
+.app-footer a:hover {
+    text-decoration: underline;
+}
+
+.app-footer p {
+    margin-bottom: 2px;
+}
