@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Previsão do Tempo</title>
-    <meta name="description" content="Aplicativo profissional de previsão do tempo.">
+    <meta name="description" content="Aplicativo profissional de previsão do tempo responsivo.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -12,60 +12,62 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body class="day">
+    
     <main class="container">
-        <div class="weather-card" id="search-card">
-            <h1>Previsão do Tempo</h1>
-            <form id="weather-form" aria-label="Busca de cidade">
+        
+        <section class="weather-card" id="search-card" aria-labelledby="search-title">
+            <h1 id="search-title">Previsão do Tempo</h1>
+            <form id="weather-form" aria-label="Formulário de Busca de cidade">
                 <div class="input-group">
                     <input type="text" id="city-input" placeholder="Digite o nome da cidade" required aria-label="Nome da cidade">
                     <button type="submit" id="search-btn">Buscar</button>
                 </div>
             </form>
             
-            <div id="loading" class="hidden">
+            <div id="loading" class="hidden" aria-live="polite">
                 <div class="spinner"></div>
                 <p>Buscando...</p>
             </div>
 
-            <div id="error-message" class="hidden error"></div>
-        </div>
+            <div id="error-message" class="hidden error" aria-live="assertive"></div>
+        </section>
 
-        <div class="weather-card hidden" id="result-card">
+        <article class="weather-card hidden" id="result-card" aria-labelledby="result-city">
             
-            <div class="weather-info-box">
-                <i id="weather-icon" class="wi wi-cloudy"></i>
+            <header class="weather-info-box">
+                <i id="weather-icon" class="wi wi-cloudy" aria-hidden="true"></i>
                 <div class="temperature">
                     <span id="result-temp"></span><span class="unit">°</span>
                 </div>
-            </div>
+            </header>
 
             <h2 id="result-city"></h2>
             <p id="result-desc"></p>
             <p id="result-date"></p>
 
-            <div class="weather-metrics" id="weather-metrics">
+            <section class="weather-metrics" id="weather-metrics" aria-label="Métricas Metereológicas Detalhadas">
                 <div class="metric">
-                    <i class="wi wi-humidity"></i>
+                    <i class="wi wi-humidity" aria-hidden="true"></i>
                     <div>
                         <span id="result-humidity">--</span><span class="metric-unit">%</span>
                         <p>Umidade</p>
                     </div>
                 </div>
                 <div class="metric">
-                    <i class="wi wi-strong-wind"></i>
+                    <i class="wi wi-strong-wind" aria-hidden="true"></i>
                     <div>
                         <span id="result-wind">--</span><span class="metric-unit">km/h</span>
                         <p>Vento</p>
                     </div>
                 </div>
                 <div class="metric">
-                    <i class="wi wi-raindrops"></i>
+                    <i class="wi wi-raindrops" aria-hidden="true"></i>
                     <div>
                         <span id="result-precip">--</span><span class="metric-unit">mm</span>
                         <p>Precipitação</p>
                     </div>
                 </div>
-            </div>
+            </section>
 
             <button type="button" id="home-btn" aria-label="Voltar para a pesquisa">
                 <svg xmlns="http://www.w3.org/0000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
@@ -74,7 +76,7 @@
                 </svg>
             </button>
             
-        </div>
+        </article>
     </main>
 
     <footer class="app-footer">
