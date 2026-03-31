@@ -4,10 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Previsão do Tempo</title>
-    <meta name="description" content="Aplicativo profissional de previsão do tempo responsivo.">
+    <meta name="description" content="Aplicativo prêmio de previsão do tempo com radar de satélite responsivo.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/weather-icons/2.0.12/css/weather-icons.min.css">
     <link rel="stylesheet" href="style.css">
 </head>
@@ -16,17 +16,17 @@
     <main class="container">
         
         <section class="weather-card" id="search-card" aria-labelledby="search-title">
-            <h1 id="search-title">Previsão do Tempo</h1>
+            <h1 id="search-title">Monitor Metereológico</h1>
             <form id="weather-form" aria-label="Formulário de Busca de cidade">
                 <div class="input-group">
-                    <input type="text" id="city-input" placeholder="Digite o nome da cidade" required aria-label="Nome da cidade">
+                    <input type="text" id="city-input" placeholder="Digite uma cidade ou estado" required aria-label="Nome da cidade">
                     <button type="submit" id="search-btn">Buscar</button>
                 </div>
             </form>
             
             <div id="loading" class="hidden" aria-live="polite">
                 <div class="spinner"></div>
-                <p>Buscando...</p>
+                <p>Analisando Satélites...</p>
             </div>
 
             <div id="error-message" class="hidden error" aria-live="assertive"></div>
@@ -69,7 +69,12 @@
                 </div>
             </section>
 
-            <button type="button" id="home-btn" aria-label="Voltar para a pesquisa">
+            <!-- NOVO: Mapa Radar estilo TV -->
+            <section class="radar-container" id="radar-container" aria-label="Mapa de Radar Climático em Tempo Real">
+                <iframe id="radar-map" src="" width="100%" height="220" frameborder="0" style="border:0;" allowfullscreen></iframe>
+            </section>
+
+            <button type="button" id="home-btn" aria-label="Voltar para Nova Análise">
                 <svg xmlns="http://www.w3.org/0000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                     <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
                     <polyline points="9 22 9 12 15 12 15 22"></polyline>
@@ -80,8 +85,8 @@
     </main>
 
     <footer class="app-footer">
-        <p>Dados por <a href="https://open-meteo.com/" target="_blank" rel="noopener noreferrer">Open-Meteo</a> (Non-Commercial). UI Elements por <a href="https://erikflowers.github.io/weather-icons/" target="_blank" rel="noopener noreferrer">Weather Icons</a> (SIL OFL).</p>
-        <p><strong>Auditoria e Privacidade:</strong> Nenhum cookie, log de navegação, posição demográfica ou IP é armazenado nos servidores.</p>
+        <p>Dados por <a href="https://open-meteo.com/" target="_blank" rel="noopener noreferrer" tabindex="-1">Open-Meteo</a> e <a href="https://windy.com" target="_blank" rel="noopener noreferrer" tabindex="-1">Windy</a>. UI por <a href="https://erikflowers.github.io/weather-icons/" target="_blank" rel="noopener noreferrer" tabindex="-1">Weather Icons</a>.</p>
+        <p><strong>Auditoria e Privacidade:</strong> Nenhum tracker ou log de rede do seu IP é operado.</p>
     </footer>
 
     <script src="api.js"></script>

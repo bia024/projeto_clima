@@ -14,8 +14,9 @@ O projeto respeita absolutamente todas as regras globais e a documentação apro
 2. **Auditoria Anti-Ataques e LGPD:** Tratamento contra Interceptações (*XSS*) utilizando o construtor isolante `encodeURIComponent` no lado local. Detalhes minuciosos de tráfego, mitigação (`CORS`) e proteção estanque `HTTPS` encontram-se no documento analítico [`SECURITY.md`](SECURITY.md).
 3. **Open-Source Oficial:** Protegido corporativamente em português e inglês através da prestigiada [`LICENSE.md`](LICENSE.md).
 
-## ⚙️ Principais Funcionalidades da UI Avançada (SDLC 5 e 6)
-- **Câmera Dashboard Expandida:** Além de indicarmos a Temperatura global baseada em latitude, o aplicativo renderiza 3 sub-painéis precisos de tempo, entregando: Fração Térmica do Ar (Umidade %), Volumes de Garoa (mm) e Kilometragem dos Ventos (Km/h). Tudo via classes condicionadas dinamicamente.
+## ⚙️ Principais Funcionalidades da UI de Estúdio (TV Broadcast) e Radar
+- **Radar de Satélite Dinâmico (Windy.com):** Encorpamos uma moldura de visão real do planeta atrelada à Latitude e Longitude da busca da sua cidade! Um verdadeiro radar de chuvas animado e arrastável fica na ponta dos seus dedos sem requerer chaves de API Pagas.
+- **Câmera Dashboard Expandida:** Além de indicarmos a Temperatura global, o aplicativo renderiza 3 sub-painéis precisos de tempo, entregando: Fração Térmica do Ar (Umidade %), Volumes de Garoa (mm) e Kilometragem dos Ventos (Km/h). Tudo numa UI baseada em cores de Telejornal de ponta (Painel de LED noturno Profundo neon e Azul-Céu diurno impactante).
 - **Tratamento Fino Visual (TRACI Error):** O App não lança caixas brutas de `alerts()`, isolando o bloco de resposta visual central do CSS diretamente em textos controláveis legíveis de `"Localização não Encontrada"`.
 - **Dicionário Embutido OMC:** Dicionário mapeando lógicas numéricas dos resumos (`Weather Codes`) traduzido automaticamente as classes do Browser baseadas na umidade lida e luz solar do país testado.
 - **Buscas sem Rastreamento Sensível:** Todo o input submetido na navegação é descartado nativamente da Sessão RAM (`volatile status`) sem registros ocultos em bancos de Cache de máquina (`Local Storage`) em obediência primária da Lei de Acessibilidade Cívil e Respeito Ético a Usuários em Front-end.

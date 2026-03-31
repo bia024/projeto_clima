@@ -101,6 +101,11 @@ document.addEventListener('DOMContentLoaded', () => {
         if (resultWind) resultWind.textContent = current.windspeed;
         if (resultPrecip) resultPrecip.textContent = current.precipitation;
         
+        const radarMap = document.getElementById('radar-map');
+        if (radarMap && current.latitude && current.longitude) {
+            radarMap.src = `https://embed.windy.com/embed.html?type=map&location=coordinates&metricRain=mm&metricTemp=°C&metricWind=km/h&zoom=5&overlay=radar&product=radar&level=surface&lat=${current.latitude}&lon=${current.longitude}`;
+        }
+        
         const mappedData = weatherMapping[current.weathercode] || { desc: "Desconhecido", dayIcon: "wi-na", nightIcon: "wi-na" };
         resultDesc.textContent = mappedData.desc;
         
@@ -184,6 +189,8 @@ async function fetchWeather(city) {
     
     return {
         ...weatherData.current_weather,
+        latitude,
+        longitude,
         humidity: weatherData.current?.relative_humidity_2m ?? 0,
         precipitation: weatherData.current?.precipitation ?? 0,
         name,
