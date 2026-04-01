@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Acesso — Estação Climática</title>
+    <meta name="description" content="Faça login ou crie sua conta na Estação Climática.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="login.css">
+</head>
+<body>
+
+    <div class="login-bg">
+        <div class="bg-blur-layer"></div>
+    </div>
+
+    <div class="login-wrapper">
+
+        <div class="login-brand">
+            <svg class="brand-logo" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="18" cy="18" r="18" fill="url(#lg)"/>
+                <path d="M10 22c0-4.4 3.6-8 8-8s8 3.6 8 8" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/>
+                <circle cx="18" cy="13" r="2.5" fill="#fff"/>
+                <defs>
+                    <linearGradient id="lg" x1="0" y1="0" x2="36" y2="36" gradientUnits="userSpaceOnUse">
+                        <stop stop-color="#0D6FD6"/>
+                        <stop offset="1" stop-color="#1D99FF"/>
+                    </linearGradient>
+                </defs>
+            </svg>
+            <span>Estação Climática</span>
+        </div>
+
+        <div class="login-card" id="login-card">
+
+            <div class="card-tabs" id="card-tabs">
+                <button class="card-tab active" data-target="login-panel" id="tab-login">Entrar</button>
+                <button class="card-tab" data-target="register-panel" id="tab-register">Cadastrar</button>
+            </div>
+
+            <!-- PAINEL: ENTRAR -->
+            <div class="card-panel" id="login-panel">
+                <div class="form-field">
+                    <label for="login-email">E-mail</label>
+                    <div class="field-row">
+                        <svg class="field-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                        <input type="email" id="login-email" placeholder="hello@exemplo.com" autocomplete="email">
+                    </div>
+                </div>
+                <div class="form-field">
+                    <div class="label-row">
+                        <label for="login-password">Senha</label>
+                        <button type="button" class="forgot-link" id="forgot-btn">Esqueci minha senha</button>
+                    </div>
+                    <div class="field-row">
+                        <svg class="field-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                        <input type="password" id="login-password" placeholder="••••••••" autocomplete="current-password">
+                        <button type="button" class="pw-toggle" id="toggle-login-pw" aria-label="Mostrar senha">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                        </button>
+                    </div>
+                </div>
+                <div class="form-message hidden" id="login-msg"></div>
+                <button class="submit-btn" id="login-btn">Entrar</button>
+                <p class="switch-text">Não tem conta? <button type="button" class="switch-link" data-target="register-panel" data-tab="tab-register">Cadastre-se gratuitamente</button></p>
+            </div>
+
+            <!-- PAINEL: ESQUECI SENHA -->
+            <div class="card-panel hidden" id="forgot-panel">
+                <div class="forgot-header">
+                    <button type="button" class="back-btn" id="back-to-login">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="15 18 9 12 15 6"/></svg>
+                        Voltar
+                    </button>
+                    <h2 class="panel-title">Recuperar acesso</h2>
+                    <p class="panel-subtitle">Informe seu e-mail cadastrado e exibiremos os dados da sua conta.</p>
+                </div>
+                <div class="form-field">
+                    <label for="forgot-email">E-mail cadastrado</label>
+                    <div class="field-row">
+                        <svg class="field-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                        <input type="email" id="forgot-email" placeholder="hello@exemplo.com">
+                    </div>
+                </div>
+                <div class="form-message hidden" id="forgot-msg"></div>
+                <button class="submit-btn" id="forgot-btn-submit">Buscar conta</button>
+            </div>
+
+            <!-- PAINEL: CADASTRAR -->
+            <div class="card-panel hidden" id="register-panel">
+                <div class="form-field">
+                    <label for="reg-nome">Nome completo</label>
+                    <div class="field-row">
+                        <svg class="field-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                        <input type="text" id="reg-nome" placeholder="Seu nome completo">
+                    </div>
+                </div>
+                <div class="form-field">
+                    <label for="reg-username">Nome de usuário</label>
+                    <div class="field-row">
+                        <svg class="field-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><path d="M12 3a4 4 0 0 1 0 8 4 4 0 0 1 0-8z"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/><path d="M21 21v-2a4 4 0 0 0-3-3.87"/></svg>
+                        <input type="text" id="reg-username" placeholder="@seu_usuario">
+                    </div>
+                </div>
+                <div class="form-field">
+                    <label for="reg-data">Data de nascimento</label>
+                    <div class="field-row">
+                        <svg class="field-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                        <input type="date" id="reg-data">
+                    </div>
+                </div>
+                <div class="form-field">
+                    <label for="reg-email">E-mail</label>
+                    <div class="field-row">
+                        <svg class="field-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                        <input type="email" id="reg-email" placeholder="hello@exemplo.com">
+                    </div>
+                </div>
+                <div class="form-field">
+                    <label for="reg-password">Senha</label>
+                    <div class="field-row">
+                        <svg class="field-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                        <input type="password" id="reg-password" placeholder="••••••••">
+                        <button type="button" class="pw-toggle" id="toggle-reg-pw" aria-label="Mostrar senha">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                        </button>
+                    </div>
+                </div>
+                <div class="form-message hidden" id="reg-msg"></div>
+                <button class="submit-btn" id="register-btn">Criar conta</button>
+                <p class="switch-text">Já tem conta? <button type="button" class="switch-link" data-target="login-panel" data-tab="tab-login">Entrar</button></p>
+            </div>
+
+        </div>
+
+        <footer class="login-footer">
+            <p>Desenvolvido por <strong>Bianca Caetano</strong> &mdash; Engenheira de Software</p>
+            <p class="login-footer-copy">&copy; 2026 Estação Climática. Todos os direitos reservados.</p>
+        </footer>
+
+    </div>
+
+    <script src="auth.js"></script>
+</body>
+</html>

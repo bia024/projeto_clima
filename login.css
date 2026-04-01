@@ -1,0 +1,391 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    min-height: 100vh;
+    overflow-y: auto;
+    position: relative;
+    background: #0a0f1e;
+}
+
+.login-bg {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    background: linear-gradient(135deg, #024696 0%, #0D6FD6 40%, #1D99FF 70%, #0a1628 100%);
+}
+
+.bg-blur-layer {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 20% 50%, rgba(29, 153, 255, 0.3) 0%, transparent 60%),
+                radial-gradient(ellipse at 80% 20%, rgba(250, 204, 21, 0.15) 0%, transparent 50%),
+                radial-gradient(ellipse at 60% 80%, rgba(2, 70, 150, 0.4) 0%, transparent 60%);
+}
+
+.login-wrapper {
+    position: relative;
+    z-index: 10;
+    width: 100%;
+    max-width: 28rem;
+    margin: 0 auto;
+    padding: 2.5rem 1rem 3rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.25rem;
+}
+
+/* Brand */
+.login-brand {
+    display: flex;
+    align-items: center;
+    gap: 0.625rem;
+    color: #ffffff;
+    font-size: 1.1rem;
+    font-weight: 700;
+    letter-spacing: 0.01em;
+}
+
+.brand-logo {
+    width: 2.25rem;
+    height: 2.25rem;
+    flex-shrink: 0;
+}
+
+/* ======================================= */
+/* CARD                                    */
+/* ======================================= */
+
+.login-card {
+    width: 100%;
+    background: #ffffff;
+    border-radius: 1rem;
+    padding: 1.75rem 2rem 2rem;
+    box-shadow: 0 1.5rem 4rem rgba(0, 0, 0, 0.4);
+    animation: slideUp 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@keyframes slideUp {
+    from { opacity: 0; transform: translateY(1.5rem) scale(0.97); }
+    to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+/* Abas */
+.card-tabs {
+    display: flex;
+    border-bottom: 0.125rem solid #E2E8F0;
+    margin-bottom: 1.625rem;
+}
+
+.card-tab {
+    background: none;
+    border: none;
+    padding: 0.5rem 0.875rem 0.75rem;
+    font-family: inherit;
+    font-size: 1rem;
+    font-weight: 600;
+    color: #A0AEC0;
+    cursor: pointer;
+    position: relative;
+    transition: color 0.2s ease;
+}
+
+.card-tab::after {
+    content: '';
+    position: absolute;
+    bottom: -0.125rem;
+    left: 0;
+    right: 0;
+    height: 0.125rem;
+    background: #0D6FD6;
+    border-radius: 0.125rem 0.125rem 0 0;
+    transform: scaleX(0);
+    transition: transform 0.2s ease;
+}
+
+.card-tab.active {
+    color: #0D6FD6;
+}
+
+.card-tab.active::after {
+    transform: scaleX(1);
+}
+
+/* Painel */
+.card-panel {
+    animation: fadeIn 0.2s ease;
+}
+
+.card-panel.hidden {
+    display: none;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(0.375rem); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Campos */
+.form-field {
+    margin-bottom: 1rem;
+}
+
+.label-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.375rem;
+}
+
+.label-row label {
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: #4A5568;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+}
+
+.form-field > label {
+    display: block;
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: #4A5568;
+    margin-bottom: 0.375rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+}
+
+.field-row {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.field-ico {
+    position: absolute;
+    left: 0.75rem;
+    width: 1rem;
+    height: 1rem;
+    color: #CBD5E0;
+    pointer-events: none;
+    flex-shrink: 0;
+}
+
+.field-row input {
+    width: 100%;
+    padding: 0.75rem 2.75rem 0.75rem 2.5rem;
+    border: 0.0625rem solid #E2E8F0;
+    border-radius: 0.5rem;
+    font-family: inherit;
+    font-size: 0.95rem;
+    color: #2D3748;
+    background: #F7FAFC;
+    outline: none;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+
+.field-row input:focus {
+    border-color: #0D6FD6;
+    background: #ffffff;
+    box-shadow: 0 0 0 0.1875rem rgba(13, 111, 214, 0.1);
+}
+
+.field-row input::placeholder {
+    color: #CBD5E0;
+    font-weight: 400;
+}
+
+/* Sem padding direito em campos sem toggle */
+.field-row input:only-child,
+.field-row input + .field-ico ~ input {
+    padding-right: 0.875rem;
+}
+
+.pw-toggle {
+    position: absolute;
+    right: 0.75rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #CBD5E0;
+    display: flex;
+    align-items: center;
+    padding: 0.25rem;
+    transition: color 0.2s ease;
+}
+
+.pw-toggle svg {
+    width: 1rem;
+    height: 1rem;
+}
+
+.pw-toggle:hover { color: #718096; }
+
+/* Link esqueci senha */
+.forgot-link {
+    background: none;
+    border: none;
+    font-family: inherit;
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: #0D6FD6;
+    cursor: pointer;
+    padding: 0;
+    transition: color 0.2s ease;
+}
+
+.forgot-link:hover { color: #024696; text-decoration: underline; }
+
+/* Painel de recuperação */
+.forgot-header {
+    margin-bottom: 1.25rem;
+}
+
+.back-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    background: none;
+    border: none;
+    font-family: inherit;
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: #718096;
+    cursor: pointer;
+    padding: 0;
+    margin-bottom: 0.875rem;
+    transition: color 0.2s ease;
+}
+
+.back-btn svg { width: 1rem; height: 1rem; }
+.back-btn:hover { color: #2D3748; }
+
+.panel-title {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #1A202C;
+    margin-bottom: 0.375rem;
+}
+
+.panel-subtitle {
+    font-size: 0.85rem;
+    color: #718096;
+    line-height: 1.5;
+}
+
+/* Mensagens */
+.form-message {
+    padding: 0.625rem 0.875rem;
+    border-radius: 0.5rem;
+    font-size: 0.82rem;
+    margin-bottom: 0.875rem;
+    text-align: center;
+    animation: fadeIn 0.2s ease;
+    line-height: 1.5;
+}
+
+.form-message.hidden { display: none; }
+
+.msg-success {
+    color: #276749;
+    background: #F0FFF4;
+    border: 0.0625rem solid #9AE6B4;
+}
+
+.msg-error {
+    color: #C53030;
+    background: #FFF5F5;
+    border: 0.0625rem solid #FEB2B2;
+}
+
+.msg-info {
+    color: #1A365D;
+    background: #EBF8FF;
+    border: 0.0625rem solid #90CDF4;
+    text-align: left;
+}
+
+/* Botão principal */
+.submit-btn {
+    width: 100%;
+    padding: 0.875rem;
+    background: linear-gradient(135deg, #0D6FD6 0%, #1D99FF 100%);
+    color: #ffffff;
+    border: none;
+    border-radius: 0.625rem;
+    font-family: inherit;
+    font-weight: 700;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    letter-spacing: 0.02em;
+    margin-top: 0.25rem;
+    margin-bottom: 1rem;
+}
+
+.submit-btn:hover {
+    background: linear-gradient(135deg, #024696 0%, #0D6FD6 100%);
+    transform: translateY(-0.0625rem);
+    box-shadow: 0 0.5rem 1.5rem rgba(13, 111, 214, 0.4);
+}
+
+.submit-btn:active { transform: translateY(0); box-shadow: none; }
+
+/* Texto de alternância */
+.switch-text {
+    text-align: center;
+    font-size: 0.85rem;
+    color: #718096;
+}
+
+.switch-link {
+    background: none;
+    border: none;
+    font-family: inherit;
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: #0D6FD6;
+    cursor: pointer;
+    padding: 0;
+    transition: color 0.2s ease;
+}
+
+.switch-link:hover { color: #024696; text-decoration: underline; }
+
+/* Footer */
+.login-footer {
+    text-align: center;
+    color: rgba(255, 255, 255, 0.55);
+    font-size: 0.75rem;
+    line-height: 1.6;
+}
+
+.login-footer strong {
+    color: rgba(255, 255, 255, 0.85);
+    font-weight: 600;
+}
+
+.login-footer-copy {
+    color: rgba(255, 255, 255, 0.35);
+    font-size: 0.7rem;
+    margin-top: 0.125rem;
+}
+
+/* ======================================= */
+/* RESPONSIVO                              */
+/* ======================================= */
+
+@media (max-width: 30rem) {
+    .login-wrapper { padding: 1.5rem 0.75rem 2rem; }
+    .login-card { padding: 1.5rem 1.25rem 1.75rem; }
+}
+
+@media (max-width: 20rem) {
+    .login-card { padding: 1.25rem 1rem 1.5rem; border-radius: 0.75rem; }
+    .card-tab { font-size: 0.875rem; padding: 0.5rem 0.625rem 0.625rem; }
+}
